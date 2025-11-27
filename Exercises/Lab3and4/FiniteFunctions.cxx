@@ -8,7 +8,8 @@
 
 using std::filesystem::path;
 
-//Empty constructor
+//Python equivalent of an __init__ method
+//Empty constructor that is overloaded through the next few methods
 FiniteFunction::FiniteFunction(){
   m_RMin = -5.0;
   m_RMax = 5.0;
@@ -24,8 +25,10 @@ FiniteFunction::FiniteFunction(double range_min, double range_max, std::string o
   this->checkPath(outfile); //Use provided string to name output files
 }
 
+
 //Plots are called in the destructor
 //SUPACPP note: They syntax of the plotting code is not part of the course
+// called whenever the class is destroyed
 FiniteFunction::~FiniteFunction(){
   Gnuplot gp; //Set up gnuplot object
   this->generatePlot(gp); //Generate the plot and save it to a png using "outfile" for naming 
@@ -36,6 +39,7 @@ FiniteFunction::~FiniteFunction(){
 //Setters
 ###################
 */ 
+// python equivalent to private methods
 void FiniteFunction::setRangeMin(double RMin) {m_RMin = RMin;};
 void FiniteFunction::setRangeMax(double RMax) {m_RMax = RMax;};
 void FiniteFunction::setOutfile(std::string Outfile) {this->checkPath(Outfile);};
@@ -53,6 +57,7 @@ double FiniteFunction::rangeMax() {return m_RMax;};
 //Function eval
 ###################
 */ 
+// this is the Python equivalent to self
 double FiniteFunction::invxsquared(double x) {return 1/(1+x*x);};
 double FiniteFunction::callFunction(double x) {return this->invxsquared(x);}; //(overridable)
 
@@ -62,7 +67,7 @@ Integration by hand (output needed to normalise function when plotting)
 ###################
 */ 
 double FiniteFunction::integrate(int Ndiv){ //private
-  //ToDo write an integrator
+  //TODO: write an integrator
   return -99;  
 }
 double FiniteFunction::integral(int Ndiv) { //public
